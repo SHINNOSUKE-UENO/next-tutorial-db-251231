@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "db:seed": "prisma db seed",
+    "postinstall": "prisma generate",
     "db:studio": "prisma studio",
     "db:migrate:dev": "prisma migrate dev",
     "dev": "next dev --turbopack",
@@ -17,6 +19,9 @@
     "typecheck:full": "tsc --skipLibCheck false --noEmit",
     "clean": "git clean -xdf node_modules dist .next",
     "prepare": "husky"
+  },
+  "prisma": {
+    "seed": "pnpm tsx src/server/db/prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "6.5.0",
@@ -50,6 +55,7 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "prisma": "6.5.0",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5",
     "typescript-eslint": "^8.31.1"
   },
