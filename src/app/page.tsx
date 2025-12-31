@@ -1,6 +1,7 @@
 import { env } from "@/env";
 
 function Page() {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const message = env.DEBUG_MESSAGE;
 
   return (
