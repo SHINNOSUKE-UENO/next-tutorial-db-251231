@@ -1,4 +1,3 @@
-import { env } from "@/env";
 import { Role } from "@prisma/client";
 import { deleteAllPosts } from "@/server/dal/post";
 import {
@@ -53,14 +52,12 @@ async function fetchUsers() {
 }
 
 async function Page() {
-  const message = env.NEXT_PUBLIC_DEBUG_MESSAGE;
   const users = await fetchUsers();
   return (
     <main>
       <div className="flex justify-center items-center h-screen">
         <div className="flex flex-col items-center">
           <h1 className="text-2xl font-bold">Hello Galaxy</h1>
-          <p className="text-sm text-gray-500">{message}</p>
           <br />
           <table className="min-w-full border-collapse border border-gray-300">
             <thead>
