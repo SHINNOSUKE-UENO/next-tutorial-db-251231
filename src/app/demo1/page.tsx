@@ -1,49 +1,49 @@
 import { env } from "@/env";
-import { prisma } from "@/server/db/prisma";
 import { Role } from "@prisma/client";
+import { deleteAllPosts } from "@/server/dal/post";
+import {
+  createUser,
+  createUsers,
+  deleteAllUsers,
+  getUsers,
+} from "@/server/dal/user";
 
 async function fetchUsers() {
   try {
-    await prisma.post.deleteMany();
+    await deleteAllPosts();
 
-    await prisma.user.deleteMany();
+    await deleteAllUsers();
 
-    await prisma.user.create({
-      data: {
-        email: "alice@example.com",
-        name: "Alice",
-        role: Role.ADMIN,
-      },
+    await createUser({
+      email: "alice@example.com",
+      name: "Alice",
+      role: Role.ADMIN,
     });
 
-    await prisma.user.createMany({
-      data: [
-        {
-          email: "bob@example.com",
-          name: "Bob",
-          role: Role.USER,
-        },
-        {
-          email: "charlie@example.com",
-          name: "Charlie",
-          role: Role.USER,
-        },
-        {
-          email: "eve@example.com",
-          name: "Eve",
-          role: Role.USER,
-        },
-        {
-          email: "dave@example.com",
-          role: Role.USER,
-        },
-      ],
-    });
-
-    const users = await prisma.user.findMany({
-      orderBy: {
-        id: "asc",
+    await createUsers([
+      {
+        email: "bob@example.com",
+        name: "Bob",
+        role: Role.USER,
       },
+      {
+        email: "charlie@example.com",
+        name: "Charlie",
+        role: Role.USER,
+      },
+      {
+        email: "eve@example.com",
+        name: "Eve",
+        role: Role.USER,
+      },
+      {
+        email: "dave@example.com",
+        role: Role.USER,
+      },
+    ]);
+
+    const users = await getUsers({
+      id: "asc",
     });
     return users;
   } catch (error) {
