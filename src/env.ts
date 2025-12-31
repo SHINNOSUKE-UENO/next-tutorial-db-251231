@@ -3,10 +3,12 @@ import { z } from "zod";
 
 export const env = createEnv({
   client: {
+    NEXT_PUBLIC_DEBUG_MESSAGE: z.string(),
     /**
      * Supabase の匿名キー
      */
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
+
     /**
      * Supabase の URL
      */
@@ -16,6 +18,7 @@ export const env = createEnv({
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
     DIRECT_URL: process.env.DIRECT_URL,
+    NEXT_PUBLIC_DEBUG_MESSAGE: process.env.NEXT_PUBLIC_DEBUG_MESSAGE,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   },
