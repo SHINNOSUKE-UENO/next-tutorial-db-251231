@@ -7,15 +7,19 @@ export const env = createEnv({
      * デバッグ用メッセージ
      */
     NEXT_PUBLIC_DEBUG_MESSAGE: z.string().optional(),
-
     /**
      * Supabase の匿名キー
      */
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
+
     /**
      * Supabase の URL
      */
     NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
+    /**
+     * Vercel の URL
+     */
+    NEXT_PUBLIC_VERCEL_URL: z.string().url().optional(),
   },
   emptyStringAsUndefined: true,
   runtimeEnv: {
@@ -24,6 +28,7 @@ export const env = createEnv({
     NEXT_PUBLIC_DEBUG_MESSAGE: process.env.NEXT_PUBLIC_DEBUG_MESSAGE,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,
     NODE_ENV: process.env.NODE_ENV,
   },
   server: {
